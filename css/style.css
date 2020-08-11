@@ -1,0 +1,30 @@
+h1 {
+    font-style: initial;
+    font-size: 3em;
+    color: whitesmoke;
+    background-color: rgb(82, 0, 0);
+    text-align: center;
+}
+
+h2 {
+    font-style: initial;
+    text-align: center;
+    text-decoration: underline;
+    margin: 20px 0px;
+}  
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 20%;
+    border-radius: 50%;
+}
+
+ul {
+    text-align: center;
+    list-style-type: disc;
+    list-style-position: inside;
+}
