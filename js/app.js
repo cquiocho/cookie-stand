@@ -22,9 +22,9 @@ function generateHeader() {
       timeHeader.textContent = hoursArray[i];
       tableRow.appendChild(timeHeader);
     }
-    var time = document.createElement('th');
-    time.textContent = 'Location Total';
-    tableRow.appendChild(time);
+    var storeTotal = document.createElement('th');
+    storeTotal.textContent = 'Location Total';
+    tableRow.appendChild(storeTotal);
     parentElement.appendChild(tableRow);
   }
   
@@ -101,6 +101,24 @@ var lima = new Locations('Lima', 2, 16, 4.6);
 tokyo.generateSalesPerHour();
 tokyo.renderTableList();
 
+// introduce global variables
+var newStoreForm = document.getElementById('addStore');
+
+function newStoreSubmit(event) {
+    event.preventDefault();
+
+    var storeLocation = event.target.storeLocation.value;
+    var minCustomers = event.target.minCustomers.value;
+    var maxCustomers = event.target.maxCustomers.value;
+    var aveCookie = event.target.aveCookie.value;
+ 
+    var storeLocation = new Locations(storeLocation, minCustomers, maxCustomers, aveCookie);
+    storeLocation.generateSalesPerHour();
+    storeLocation.renderTableList();
+
+}
+
+newStoreForm.addEventListener('submit', newStoreSubmit);
 
 // var seattle = {
 //     location: 'Seattle',
