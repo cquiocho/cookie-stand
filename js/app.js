@@ -1,7 +1,9 @@
 'use strict';
 
 // establish array of hours for loop
+// global variables to be used
 var hoursArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var grandTotal = 0;
 
 // this function will generate the random number
 // borrowed from MDN random page
@@ -23,7 +25,7 @@ function generateHeader() {
       tableRow.appendChild(timeHeader);
     }
     var storeTotal = document.createElement('th');
-    storeTotal.textContent = 'Location Total';
+    storeTotal.textContent = 'Location Totals';
     tableRow.appendChild(storeTotal);
     parentElement.appendChild(tableRow);
   }
@@ -98,8 +100,40 @@ paris.generateSalesPerHour();
 paris.renderTableList();
 
 var lima = new Locations('Lima', 2, 16, 4.6);
-tokyo.generateSalesPerHour();
-tokyo.renderTableList();
+lima.generateSalesPerHour();
+lima.renderTableList();
+
+function generateFooter() {
+    var footerRow = document.createElement('tr');
+    var totalRow = document.createElement('td');
+    totalRow.textContent = 'Hourly Totals';
+    footerRow.appendChild(totalRow);
+
+// begin first loop
+for (var i = 0; i < hoursArray.length; i++) {
+    var totalPerHour = 0;
+
+// begin nested loop
+    for (var j = 0; j < allLocations.length; j++) {
+        totalPerHour += allLocations[j].cookieSalesPerHour[i];
+
+        grandTotal += allLocations[j].cookieSalesPerHour[i];
+}
+
+    var footerData = document.createElement('td');
+    footerData.textContent = totalPerHour;
+    footerRow.appendChild(footerData);
+
+}
+
+footerData = document.createElement('td');
+footerData.textContent = grandTotal;
+footerRow.appendChild(footerData);
+
+parentElement.appendChild(footerRow);
+}
+
+generateFooter();
 
 // introduce global variables
 var newStoreForm = document.getElementById('addStore');
